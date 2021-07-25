@@ -2,7 +2,7 @@ name: test
 on: [push]
 jobs:
   pytest:
-    runs-on: ubuntu-latest macos-latest
+    runs-on: [ubuntu-latest, macos-latest]
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
