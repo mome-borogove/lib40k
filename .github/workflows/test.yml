@@ -2,14 +2,18 @@ name: test
 on: [push]
 jobs:
   pytest:
-    runs-on: [ubuntu-latest, macos-latest]
+    runs-on: {{ matrix.os }}
+    strategy:
+      matrix: 
+        os: [ubuntu-latest, macos-latest]
+        python-version: ['3.x']
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
       - name: Set up Python 3
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: {{ matrix.python-version }}
       - name: Install dev tools
         run: |
           python3 -m pip install --upgrade pip
